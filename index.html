@@ -3,284 +3,580 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SportAlgorithmus - Panel de Administración</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>SportAlgorithmus - Introducción</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(90deg, #1a2a44 0%, #ff4500 100%);
+            padding: 2em 1em;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+        #logo {
+            max-width: 350px;
+            height: auto;
+            background: none;
+            border: none;
+            box-shadow: none;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+        }
+        nav {
+            background-color: #000000;
+            padding: 1em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 1.5em;
+        }
+        nav a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ff4500;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0.5em 0;
+            color: #ffd700;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            color: #1a2a44;
+            border-bottom: 3px solid #ff4500;
+            display: inline-block;
+            padding-bottom: 5px;
+            position: relative;
+        }
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: #ffd700;
+        }
+        section {
+            padding: 3em;
+            background-color: #fff;
+            margin: 1em;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, opacity 0.5s;
+            border-left: 6px solid #000000;
+            animation: fadeInUp 1s ease-out;
+        }
+        section:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        section:hover {
+            transform: scale(1.03);
+            opacity: 0.98;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            margin: 2em 0;
+        }
+        .contact-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5em;
+            border-radius: 10px;
+            border-left: 4px solid #ff4500;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .contact-card h3 {
+            color: #1a2a44;
+            margin-top: 0;
+            font-size: 1.5em;
+            text-align: center;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 0.5em;
+        }
+        .contact-info {
+            margin: 1em 0;
+        }
+        .contact-info p {
+            margin: 0.5em 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .contact-info i {
+            color: #ff4500;
+            width: 20px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .social-contact {
+            margin-top: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            justify-content: center;
+        }
+        .social-contact a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .social-contact a:hover {
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .social-contact .instagram {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        }
+        .social-contact .whatsapp {
+            background: #25D366;
+        }
+        .social-contact .email {
+            background: linear-gradient(45deg, #1a2a44 0%, #ff4500 100%);
+            color: #ffd700;
+        }
+        .social-contact .email svg {
+            color: #ffd700;
+        }
+        .email-btn {
+            display: block;
+            width: 100%;
+            margin: 1em 0;
+            padding: 10px;
+            background: linear-gradient(45deg, #1a2a44 0%, #ff4500 100%);
+            color: #ffd700;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        .email-btn:hover {
+            background: linear-gradient(45deg, #ff4500 0%, #1a2a44 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background: linear-gradient(90deg, #000000 0%, #1a2a44 100%);
+            text-align: center;
+            padding: 1.5em;
+            color: #ffd700;
+            width: 100%;
+            margin-top: 2em;
+        }
+        .social-logo {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+            stroke: none;
+        }
+        .social-logo.email {
+            fill: #ffd700;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 2px solid #1a2a44;
+            width: 80%;
+            max-width: 400px;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .close {
+            color: #ff4500;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        form input, form button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #1a2a44;
+            font-family: 'Oswald', sans-serif;
+        }
+        form button {
+            background-color: #ff4500;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        form button:hover {
+            background-color: #ffd700;
+        }
+        iframe {
+            display: block;
+            margin: 1em auto;
+            border: 3px solid #1a2a44;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav li {
+                margin: 0.5em 0;
+            }
+            iframe {
+                width: 100%;
+                height: auto;
+            }
+            section {
+                padding: 1.5em;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 1em;
+            }
+            .social-contact {
+                gap: 0.8em;
+            }
+            .social-contact a {
+                width: 45px;
+                height: 45px;
+            }
+            .social-contact .social-logo {
+                width: 28px;
+                height: 28px;
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes iconPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .social-contact a:hover .social-logo {
+            animation: iconPulse 0.6s ease-in-out;
+        }
+    </style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="header-container">
-            <div class="logo-section">
-                <img src="https://github.com/MrQuake29/sportalgorithmus-website/blob/main/sportalgorithmus_logo.png.png?raw=true" alt="SportAlgorithmus Logo" class="main-logo">
-            </div>
-            <div class="header-text">
-                <h1 class="brand-title">SportAlgorithmus</h1>
-                <p class="brand-subtitle">Panel de Administración - Gestión Inteligente</p>
-            </div>
-        </div>
+    <header id="inicio">
+        <img id="logo" src="https://github.com/MrQuake29/sportalgorithmus-website/blob/main/sportalgorithmus_logo.png.png?raw=true" alt="SportAlgorithmus Logo">
+        <h1>SportAlgorithmus</h1>
+        <p>Software desarrollado por: Nicolás David Palacios Linares & Joshua Daniel Higuera Forero</p>
     </header>
 
-    <aside class="sidebar" id="sidebar">
-        <nav class="sidebar-nav">
-            <ul>
-                <li class="nav-item active" data-section="dashboard">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </li>
-                <li class="nav-item" data-section="services">
-                    <i class="fas fa-cogs"></i>
-                    <span>Servicios</span>
-                </li>
-                <li class="nav-item" data-section="analytics">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Análisis</span>
-                </li>
-                <li class="nav-item" data-section="clients">
-                    <i class="fas fa-users"></i>
-                    <span>Clientes</span>
-                </li>
-                <li class="nav-item" data-section="settings">
-                    <i class="fas fa-cog"></i>
-                    <span>Configuración</span>
-                </li>
-            </ul>
-        </nav>
-    </aside>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#mision">Misión</a></li>
+            <li><a href="#vision">Visión</a></li>
+            <li><a href="#valores">Valores</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#video">Video Demostrativo</a></li>
+            <li><a href="#colores">Simbolismo de Colores</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#" id="login-link">Iniciar Sesión</a></li>
+            <li><a href="#" id="register-link">Registro</a></li>
+        </ul>
+    </nav>
 
-    <main class="main-content">
-        <section id="dashboard" class="content-section active">
-            <div class="dashboard-header">
-                <h2>Bienvenido al Panel de Control</h2>
-                <p>Gestión inteligente de servicios deportivos y tecnológicos</p>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">⚽</div>
-                    <div class="stat-info">
-                        <h3 id="total-services">0</h3>
-                        <p>Servicios Activos</p>
-                    </div>
+    <section id="introduccion">
+        <h2>Introducción</h2>
+        <p>En el mundo digital, la eficiencia es clave. En Sport Algorithmus, creamos software avanzado que aprovecha el poder de los algoritmos para analizar datos y ofrecer insights críticos. Nuestras soluciones están diseñadas para cualquier entidad que aspire a maximizar su rendimiento y alcanzar sus objetivos. Te invitamos a explorar cómo nuestra tecnología puede revolucionar tu enfoque.</p>
+    </section>
+
+    <section id="mision">
+        <h2>Misión</h2>
+        <p>Desarrollar software dedicado al crecimiento de implementación de servicios de software apoyándonos permanentemente en la evolución de los nuevos lenguajes y códigos de ultima tecnología.</p>
+        <p>Impulsar a la industria permanentemente la creación y la actualización a su software que se encuentran sus procesos productivos para que la compañía permanezca a la vanguardia del desarrollo.</p>
+    </section>
+
+    <section id="vision">
+        <h2>Visión</h2>
+        <p>La empresa busca liderar en soluciones de software innovadoras, destacándose por su excelencia técnica y compromiso con el cliente.</p>
+        <p>Fomenta un entorno colaborativo para el desarrollo personal y contribuye a mejorar la calidad de vida mediante tecnologías que beneficien a la sociedad incursionando en los mercados con crecimientos proyectados hasta el año 2030.</p>
+    </section>
+
+    <section id="valores">
+        <h2>Valores</h2>
+        <ul>
+            <li><strong>Innovación:</strong> Impulso constante hacia la creación de soluciones novedosas. Fomento de la experimentación y la adopción de nuevas tecnologías.</li>
+            <li><strong>Calidad:</strong> Compromiso con la excelencia en el desarrollo de software. Enfoque en la creación de productos robustos, fiables y eficientes.</li>
+            <li><strong>Integridad:</strong> Transparencia y honestidad en todas las interacciones. Construcción de relaciones de confianza con clientes y colaboradores.</li>
+            <li><strong>Colaboración:</strong> Trabajo en equipo y comunicación abierta. Fomento de un ambiente de apoyo y aprendizaje mutuo.</li>
+            <li><strong>Orientación al Cliente:</strong> Priorización de las necesidades y satisfacción del cliente. Creación de relaciones a largo plazo basadas en el éxito compartido.</li>
+            <li><strong>Aprendizaje Continuo:</strong> Inversión en el desarrollo profesional de los empleados. Adaptación constante a las últimas tendencias tecnológicas.</li>
+            <li><strong>Responsabilidad:</strong> Compromiso con el impacto ético y social del software. Prácticas sostenibles y respetuosas con el medio ambiente.</li>
+            <li><strong>Adaptabilidad:</strong> Capacidad de poder adaptarse a los cambios de la tecnología. Poder dar soluciones a los problemas de una manera rápida.</li>
+        </ul>
+    </section>
+
+    <section id="servicios">
+        <h2>Servicios</h2>
+        <ul>
+            <li><strong>Desarrollo de Software a Medida:</strong> Creación de soluciones personalizadas que se ajustan a los requerimientos específicos de cada cliente. Desarrollo de aplicaciones web, móviles y de escritorio.</li>
+            <li><strong>Desarrollo de Aplicaciones Móviles:</strong> Diseño y desarrollo de aplicaciones para dispositivos iOS y Android. Desarrollo de aplicaciones nativas, híbridas o multiplataforma.</li>
+            <li><strong>Desarrollo Web:</strong> Creación de sitios web y aplicaciones web. Desarrollo de plataformas de comercio electrónico.</li>
+            <li><strong>Consultoría Tecnológica:</strong> Asesoramiento en la selección de tecnologías y herramientas. Análisis de necesidades y diseño de soluciones tecnológicas. Apoyo en la transformación digital.</li>
+            <li><strong>Mantenimiento y Soporte:</strong> Mantenimiento continuo de software para garantizar su correcto funcionamiento. Soporte técnico para resolver problemas y dudas. Actualizaciones y mejoras de software.</li>
+            <li><strong>Pruebas de Software y Control de Calidad:</strong> Garantizar que el software funcione correctamente. Pruebas de seguridad. Pruebas de rendimiento.</li>
+            <li><strong>Integración de Sistemas:</strong> Conexión de diferentes sistemas de software para mejorar la eficiencia. Migración de datos.</li>
+            <li><strong>Diseño UX/UI:</strong> Diseño de interfaces de usuario intuitivas y atractivas.</li>
+            <li><strong>Análisis de Datos:</strong> Implementación de sistemas de análisis de datos para mejorar la toma de decisiones.</li>
+            <li><strong>Desarrollo de Software Empresarial:</strong> Sistemas de planificación de recursos empresariales. Software de gestión de relaciones con los clientes.</li>
+            <li><strong>Servicios Adicionales:</strong></li>
+        </ul>
+    </section>
+
+    <section id="video">
+        <h2>Video Demostrativo</h2>
+        <p>Un ejemplo de cómo la tecnología y los algoritmos transforman la toma de decisiones en el fútbol, destacando el uso de datos e inteligencia artificial.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/S941ctxREok" title="Sports Mediathon - Tecnología en el fútbol" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>Créditos: Video proporcionado por UNTREF MEDIA .</p>
+    </section>
+
+    <section id="colores">
+        <h2>Simbolismo de Colores</h2>
+        <ul>
+            <li><strong>Azul:</strong> Representa la confianza, estabilidad y precisión de nuestros algoritmos y soluciones.</li>
+            <li><strong>Naranja/Rojos:</strong> Evocan energía, dinamismo y la capacidad transformadora de nuestro software para generar resultados impactantes.</li>
+            <li><strong>Negro:</strong> Aporta sofisticación, robustez y profesionalismo a nuestra tecnología.</li>
+            <li><strong>Amarillo/Dorado:</strong> Simboliza la inteligencia, creatividad y la revelación de insights valiosos que nuestros algoritmos proporcionan.</li>
+        </ul>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="contact-container">
+            <!-- Contacto Joshua -->
+            <div class="contact-card">
+                <h3>Joshua Daniel Higuera Forero</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i><strong>Dirección:</strong> Cl. 59 Sur #65, Tunjuelito, Bogotá</p>
+                    <p><i class="fas fa-envelope"></i><strong>Correo:</strong> <a href="mailto:jhiguera@rogeliosalmonaied.edu.co">jhiguera@rogeliosalmonaied.edu.co</a></p>
+                    <p><i class="fas fa-phone"></i><strong>CEL:</strong> <a href="https://wa.me/573138952814">3138952814</a></p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon">💰</div>
-                    <div class="stat-info">
-                        <h3 id="total-revenue">$0</h3>
-                        <p>Ingresos Totales</p>
-                    </div>
+                <div class="social-contact">
+                    <a href="https://www.instagram.com/j.higuera777" target="_blank" rel="noopener noreferrer" class="instagram" title="Instagram Joshua" aria-label="Instagram de Joshua">
+                        <svg class="social-logo" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/573138952814" target="_blank" rel="noopener noreferrer" class="whatsapp" title="WhatsApp Joshua" aria-label="WhatsApp de Joshua">
+                        <svg class="social-logo" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:jhiguera@rogeliosalmonaied.edu.co?subject=Consulta%20SportAlgorithmus" class="email" title="Email Joshua" aria-label="Email de Joshua">
+                        <svg class="social-logo email" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </a>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon">📈</div>
-                    <div class="stat-info">
-                        <h3 id="growth-rate">0%</h3>
-                        <p>Crecimiento Mensual</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-info">
-                        <h3 id="active-clients">0</h3>
-                        <p>Clientes Activos</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-charts">
-                <div class="chart-card">
-                    <h4>Performance de Servicios</h4>
-                    <canvas id="servicesChart" width="400" height="200"></canvas>
-                </div>
-                <div class="chart-card">
-                    <h4>Distribución por Categoría</h4>
-                    <canvas id="categoryChart" width="400" height="200"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="content-section">
-            <div class="section-header">
-                <h2>Gestionar Servicios</h2>
-                <div class="section-actions">
-                    <button class="btn-primary" id="add-new-service">
-                        <i class="fas fa-plus"></i> Nuevo Servicio
-                    </button>
-                    <button class="btn-secondary" id="export-services">
-                        <i class="fas fa-download"></i> Exportar
-                    </button>
-                </div>
-            </div>
-
-            <div class="crud-panel" id="crud-panel" style="display: none;">
-                <form id="serviceForm" class="service-form">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="serviceName">Nombre del Servicio *</label>
-                            <input type="text" id="serviceName" placeholder="Ej: Análisis de Datos Deportivos" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="serviceCategory">Categoría *</label>
-                            <select id="serviceCategory" required>
-                                <option value="">Seleccionar categoría</option>
-                                <option value="desarrollo-web">Desarrollo Web</option>
-                                <option value="desarrollo-movil">Desarrollo Móvil</option>
-                                <option value="consultoria">Consultoría Tecnológica</option>
-                                <option value="analisis-datos">Análisis de Datos</option>
-                                <option value="ux-ui">Diseño UX/UI</option>
-                                <option value="mantenimiento">Mantenimiento</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="servicePrice">Precio (USD) *</label>
-                            <input type="number" id="servicePrice" step="0.01" min="0" placeholder="0.00" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="serviceDuration">Duración Estimada (días)</label>
-                            <input type="number" id="serviceDuration" min="1" placeholder="30">
-                        </div>
-
-                        <div class="form-group full-width">
-                            <label for="serviceDescription">Descripción Detallada *</label>
-                            <textarea id="serviceDescription" rows="4" placeholder="Describe el servicio, beneficios y características técnicas..." required></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="serviceStatus">Estado *</label>
-                            <select id="serviceStatus" required>
-                                <option value="disponible">Disponible</option>
-                                <option value="en-proceso">En Proceso</option>
-                                <option value="completado">Completado</option>
-                                <option value="pausado">Pausado</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-actions">
-                        <input type="hidden" id="editServiceId">
-                        <button type="submit" class="btn-primary">
-                            <i class="fas fa-save"></i>
-                            <span id="saveButtonText">Guardar Servicio</span>
-                        </button>
-                        <button type="button" id="cancelEdit" class="btn-secondary">
-                            <i class="fas fa-times"></i> Cancelar
-                        </button>
-                    </div>
-                </form>
+                <a href="mailto:jhiguera@rogeliosalmonaied.edu.co?subject=Consulta%20SportAlgorithmus" class="email-btn">Contactar por Email</a>
             </div>
 
-            <div class="table-container">
-                <div class="table-header">
-                    <h3>Servicios Registrados <span id="servicesCount">(0)</span></h3>
-                    <div class="table-filters">
-                        <select id="filterStatus">
-                            <option value="">Todos los estados</option>
-                            <option value="disponible">Disponible</option>
-                            <option value="en-proceso">En Proceso</option>
-                            <option value="completado">Completado</option>
-                            <option value="pausado">Pausado</option>
-                        </select>
-                        <input type="text" id="searchServices" placeholder="Buscar por nombre...">
-                    </div>
+            <!-- Contacto Nicolás -->
+            <div class="contact-card">
+                <h3>Nicolás David Palacios Linares</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i><strong>Dirección:</strong> Cl. 59 Sur #65, Tunjuelito, Bogotá</p>
+                    <p><i class="fas fa-envelope"></i><strong>Correo:</strong> <a href="mailto:palacios.linares.nico@gmail.com">palacios.linares.nico@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i><strong>CEL:</strong> <a href="https://wa.me/573214322155">3214322155</a></p>
                 </div>
-                
-                <div class="table-wrapper">
-                    <table class="services-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Categoría</th>
-                                <th>Precio</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="servicesTableBody">
-                        </tbody>
-                    </table>
+                <div class="social-contact">
+                    <a href="https://www.instagram.com/np._xix" target="_blank" rel="noopener noreferrer" class="instagram" title="Instagram Nicolás" aria-label="Instagram de Nicolás">
+                        <svg class="social-logo" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/573214322155" target="_blank" rel="noopener noreferrer" class="whatsapp" title="WhatsApp Nicolás" aria-label="WhatsApp de Nicolás">
+                        <svg class="social-logo" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:palacios.linares.nico@gmail.com?subject=Consulta%20SportAlgorithmus" class="email" title="Email Nicolás" aria-label="Email de Nicolás">
+                        <svg class="social-logo email" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </a>
                 </div>
-            </div>
-        </section>
-
-        <section id="analytics" class="content-section">
-            <div class="section-header">
-                <h2>Análisis de Rendimiento</h2>
-                <p>Insights basados en algoritmos y datos deportivos</p>
-            </div>
-            
-            <div class="analytics-grid">
-                <div class="analytics-card">
-                    <h3>Tendencias de Servicios</h3>
-                    <canvas id="trendsChart"></canvas>
-                </div>
-                <div class="analytics-card">
-                    <h3>Distribución por Categoría</h3>
-                    <canvas id="categoryChart"></canvas>
-                </div>
-                <div class="analytics-card full-width">
-                    <h3>Predicciones de Demanda</h3>
-                    <div class="prediction-panel">
-                        <div class="prediction-item">
-                            <span class="prediction-label">Desarrollo Móvil</span>
-                            <span class="prediction-value">+45%</span>
-                        </div>
-                        <div class="prediction-item">
-                            <span class="prediction-label">Análisis de Datos</span>
-                            <span class="prediction-value">+32%</span>
-                        </div>
-                        <div class="prediction-item">
-                            <span class="prediction-label">UX/UI Design</span>
-                            <span class="prediction-value">+18%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="clients" class="content-section">
-            <h2>Gestión de Clientes</h2>
-            <p>Sección para clientes en desarrollo...</p>
-        </section>
-
-        <section id="settings" class="content-section">
-            <h2>Configuración</h2>
-            <p>Sección de configuración en desarrollo...</p>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <p>© 2025 SportAlgorithmus. Todos los derechos reservados.</p>
-                <p>Desarrollado por: Nicolás David Palacios Linares & Joshua Daniel Higuera Forero</p>
-            </div>
-            <div class="social-section">
-                <a href="https://www.instagram.com/nic._p19" target="_blank" class="social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-0.057-1.263-.064-1.644.0-4.849 0-3.204.013-3.583.064-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98C.718 8.333.634 8.741.634 12c0 3.25.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.28.058 1.688.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="currentColor"></path>
-                    </svg>
-                </a>
-                <a href="https://www.tiktok.com/@nic._19p" target="_blank" class="social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                        <path d="M19.05 4.97a7 7 0 0 1 1.05 3.97v3a7 7 0 0 1-8.97 6.82 7 7 0 0 1-3.97-1.05v-2.97a4.97 4.97 0 0 1 2.97 1.05 3 3 0 0 0 3-3v-3a3 3 0 0 0-6 0v3a7 7 0 0 1 1.05 3.97A7 7 0 0 1 1 10.97v-3a7 7 0 0 1 13.95-3.97 7 7 0 0 1 4.05 8zm-1.41 10.88a5.94 5.94 0 0 1-1.05-3.97v-2.88a2 2 0 1 0-4 0v5a2 2 0 0 0 1.98 2 2 2 0 0 1-.98 1.94v2a8 8 0 0 0 8-8 8 8 0 0 0-1.41-4.31 1.41 1.41 0 0 1 1 2.31z" fill="currentColor"></path>
-                    </svg>
-                </a>
-                <a href="#" class="social-link" title="Joshua - Por definir">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-link" title="Joshua - Por definir">
-                    <i class="fab fa-instagram"></i>
-                </a>
+                <a href="mailto:palacios.linares.nico@gmail.com?subject=Consulta%20SportAlgorithmus" class="email-btn">Contactar por Email</a>
             </div>
         </div>
+        <div style="text-align: center; margin-top: 2em;">
+            <a href="mailto:jhiguera@rogeliosalmonaied.edu.co,palacios.linares.nico@gmail.com?subject=Consulta%20SportAlgorithmus" class="email-btn" style="display: inline-block; width: auto; padding: 12px 24px;">📧 Contacto General SportAlgorithmus</a>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-login">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <input type="email" placeholder="Correo Electrónico" required>
+                <input type="password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-register">&times;</span>
+            <h2>Registro</h2>
+            <form id="register-form">
+                <input type="text" placeholder="Nombre" required>
+                <input type="email" placeholder="Correo Electrónico" required>
+                <input type="password" placeholder="Contraseña" required>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025-2025 SportAlgorithmus. Todos los derechos reservados. | <a href="#inicio">Inicio</a> | <a href="#contacto">Contacto</a> | Política de Privacidad</p>
     </footer>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="app.js"></script>
-</body>
-</html>
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Login Modal
+        const loginModal = document.getElementById('login-modal');
+        const loginLink = document.getElementById('login-link');
+        const closeLogin = document.getElementById('close-login');
+
+        loginLink.onclick = function() {
+            loginModal.style.display = "block";
+        }
+        closeLogin.onclick = function() {
+            loginModal.style.display = "none";
+        }
+
+        // Register Modal
+        const registerModal = document.getElementById('register-modal');
+        const registerLink = document.getElementById('register-link');
+        const closeRegister = document.getElementById('close-register');
+
+        registerLink.onclick = function() {
+            registerModal.style.display = "block";
+        }
+        closeRegister.onclick = function() {
+            registerModal.style.display = "none";
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+            if (event.target == registerModal) {
+                registerModal.style.display = "none";
+            }
+        }
+
+        // Form submissions with validation
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.querySelector('#login-form input[type="email"]').value;
+            const password = document.querySelector('#login-form input[type="password"]').value;
+            if (email && password) {
+                alert('Sesión iniciada (demo)');
+                loginModal.style.display = "none";
+            } else {
+                alert('Por favor, completa todos los campos.');
+            }
+        });
+
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.querySelector('#register-form input[type="text"]').value;
+            const email = document.querySelector('#register-form input[type="email"]').value;
+            const password = document.querySelector('#register-form input[type="password"]').value;
+            if (name && email && password) {
+                alert('Registro completado (demo)');
+                registerModal.style.display = "none";
+            } else {
+                alert('Por favor, completa todos los campos.');
+            }
+        });
+    </script>
 </body>
 </html>
