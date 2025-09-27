@@ -14,6 +14,7 @@
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease; /* Añadido para posible modo oscuro futuro */
         }
         header {
             background: linear-gradient(90deg, #1a2a44 0%, #ff4500 100%);
@@ -30,6 +31,10 @@
             border: none;
             box-shadow: none;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+            transition: transform 0.5s ease; /* Añadido para rotación en hover */
+        }
+        #logo:hover {
+            transform: rotate(360deg);
         }
         nav {
             background-color: #000000;
@@ -37,6 +42,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Añadido para profundidad */
         }
         nav ul {
             list-style: none;
@@ -52,10 +58,11 @@
             color: #ffd700;
             text-decoration: none;
             font-weight: 700;
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.3s; /* Mejorado hover */
         }
         nav a:hover {
             color: #ff4500;
+            transform: scale(1.1);
         }
         h1 {
             font-size: 3em;
@@ -63,6 +70,7 @@
             color: #ffd700;
             text-transform: uppercase;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite; /* Añadido pulso sutil */
         }
         h2 {
             color: #1a2a44;
@@ -70,6 +78,10 @@
             display: inline-block;
             padding-bottom: 5px;
             position: relative;
+            transition: border-bottom-width 0.3s; /* Animación en hover */
+        }
+        h2:hover {
+            border-bottom-width: 6px;
         }
         h2::after {
             content: "";
@@ -86,9 +98,15 @@
             margin: 1em;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, opacity 0.5s;
+            transition: transform 0.3s, opacity 0.5s, box-shadow 0.3s; /* Mejorado */
             border-left: 6px solid #000000;
             animation: fadeInUp 1s ease-out;
+            opacity: 0; /* Para animación al scroll */
+            transform: translateY(50px);
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         section:nth-child(even) {
             background-color: #f9f9f9;
@@ -96,10 +114,17 @@
         section:hover {
             transform: scale(1.03);
             opacity: 0.98;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         ul {
             list-style-type: disc;
             padding-left: 20px;
+        }
+        ul li {
+            transition: transform 0.3s; /* Animación en lista */
+        }
+        ul li:hover {
+            transform: translateX(10px);
         }
         .contact-container {
             display: grid;
@@ -113,6 +138,11 @@
             border-radius: 10px;
             border-left: 4px solid #ff4500;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s, transform 0.3s; /* Añadido */
+        }
+        .contact-card:hover {
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+            transform: translateY(-5px);
         }
         .contact-card h3 {
             color: #1a2a44;
@@ -130,6 +160,10 @@
             display: flex;
             align-items: center;
             gap: 0.5em;
+            transition: color 0.3s; /* Añadido */
+        }
+        .contact-info p:hover {
+            color: #ff4500;
         }
         .contact-info i {
             color: #ff4500;
@@ -191,7 +225,7 @@
         }
         .email-btn:hover {
             background: linear-gradient(45deg, #ff4500 0%, #1a2a44 100%);
-            transform: translateY(-1px);
+            transform: translateY(-1px) scale(1.05);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         footer {
@@ -221,6 +255,10 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0,0,0,0.4);
+            transition: opacity 0.3s ease; /* Añadido para fade in */
+        }
+        .modal.show {
+            opacity: 1;
         }
         .modal-content {
             background-color: #fff;
@@ -232,19 +270,27 @@
             color: #333;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease; /* Animación al abrir */
+        }
+        .modal-content.show {
+            transform: translateY(0);
+            opacity: 1;
         }
         .close {
             color: #ff4500;
             float: right;
             font-size: 28px;
             font-weight: bold;
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.3s; /* Mejorado */
         }
         .close:hover,
         .close:focus {
             color: #000000;
             text-decoration: none;
             cursor: pointer;
+            transform: rotate(90deg);
         }
         form input, form button {
             display: block;
@@ -254,15 +300,21 @@
             border-radius: 5px;
             border: 1px solid #1a2a44;
             font-family: 'Oswald', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s; /* Añadido focus effect */
+        }
+        form input:focus {
+            border-color: #ff4500;
+            box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
         }
         form button {
             background-color: #ff4500;
             color: #fff;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
         form button:hover {
             background-color: #ffd700;
+            transform: scale(1.05);
         }
         iframe {
             display: block;
@@ -270,6 +322,10 @@
             border: 3px solid #1a2a44;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s; /* Añadido hover */
+        }
+        iframe:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
         @media (max-width: 600px) {
             nav ul {
@@ -318,8 +374,10 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-        .social-contact a:hover .social-logo {
-            animation: iconPulse 0.6s ease-in-out;
+        @keyframes pulse {
+            0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+            50% { text-shadow: 2px 2px 8px rgba(255, 69, 0, 0.5); }
+            100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
         }
     </style>
 </head>
@@ -397,8 +455,8 @@
     <section id="video">
         <h2>Video Demostrativo</h2>
         <p>Descubre cómo Sport Algorithmus transforma datos en éxito deportivo con nuestra tecnología propia.</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/QrLfMGhRm3Q" title="Sport Algorithmus - Tecnología en el Deporte" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p>Créditos: Video proporcionado por Sport Algorithmus.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/QrLfMGhRm3Q" title="Sports Mediathon - Tecnología en el fútbol" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>Créditos: Video proporcionado por UNTREF MEDIA .</p>
     </section>
 
     <section id="colores">
@@ -494,7 +552,7 @@
             <span class="close" id="close-register">&times;</span>
             <h2>Registro</h2>
             <form id="register-form">
-                <input type="text" placeholder="Nombre" required>
+                <input type="text" id="name-input" placeholder="Nombre" required>
                 <input type="email" placeholder="Correo Electrónico" required>
                 <input type="password" placeholder="Contraseña" required>
                 <button type="submit">Registrarse</button>
@@ -525,9 +583,13 @@
 
         loginLink.onclick = function() {
             loginModal.style.display = "block";
+            setTimeout(() => loginModal.classList.add('show'), 10);
+            setTimeout(() => loginModal.querySelector('.modal-content').classList.add('show'), 10);
         }
         closeLogin.onclick = function() {
-            loginModal.style.display = "none";
+            loginModal.classList.remove('show');
+            loginModal.querySelector('.modal-content').classList.remove('show');
+            setTimeout(() => loginModal.style.display = "none", 300);
         }
 
         // Register Modal
@@ -537,18 +599,26 @@
 
         registerLink.onclick = function() {
             registerModal.style.display = "block";
+            setTimeout(() => registerModal.classList.add('show'), 10);
+            setTimeout(() => registerModal.querySelector('.modal-content').classList.add('show'), 10);
         }
         closeRegister.onclick = function() {
-            registerModal.style.display = "none";
+            registerModal.classList.remove('show');
+            registerModal.querySelector('.modal-content').classList.remove('show');
+            setTimeout(() => registerModal.style.display = "none", 300);
         }
 
         // Close modals when clicking outside
         window.onclick = function(event) {
             if (event.target == loginModal) {
-                loginModal.style.display = "none";
+                loginModal.classList.remove('show');
+                loginModal.querySelector('.modal-content').classList.remove('show');
+                setTimeout(() => loginModal.style.display = "none", 300);
             }
             if (event.target == registerModal) {
-                registerModal.style.display = "none";
+                registerModal.classList.remove('show');
+                registerModal.querySelector('.modal-content').classList.remove('show');
+                setTimeout(() => registerModal.style.display = "none", 300);
             }
         }
 
@@ -559,7 +629,9 @@
             const password = document.querySelector('#login-form input[type="password"]').value;
             if (email && password) {
                 alert('Sesión iniciada (demo)');
-                loginModal.style.display = "none";
+                loginModal.classList.remove('show');
+                loginModal.querySelector('.modal-content').classList.remove('show');
+                setTimeout(() => loginModal.style.display = "none", 300);
             } else {
                 alert('Por favor, completa todos los campos.');
             }
@@ -567,15 +639,47 @@
 
         document.getElementById('register-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const name = document.querySelector('#register-form input[type="text"]').value;
+            const nameInput = document.getElementById('name-input');
+            const name = nameInput.value;
             const email = document.querySelector('#register-form input[type="email"]').value;
             const password = document.querySelector('#register-form input[type="password"]').value;
+
+            // Validación de nombre: solo letras, espacios y acentos
+            const nameRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/;
+            if (!nameRegex.test(name)) {
+                alert('El nombre solo puede contener letras, espacios y acentos. No se permiten números o caracteres especiales.');
+                nameInput.focus();
+                return;
+            }
+
             if (name && email && password) {
                 alert('Registro completado (demo)');
-                registerModal.style.display = "none";
+                registerModal.classList.remove('show');
+                registerModal.querySelector('.modal-content').classList.remove('show');
+                setTimeout(() => registerModal.style.display = "none", 300);
             } else {
                 alert('Por favor, completa todos los campos.');
             }
+        });
+
+        // Animación de secciones al scroll
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px"
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
         });
     </script>
 </body>
