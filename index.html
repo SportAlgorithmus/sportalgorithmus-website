@@ -4,21 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SportAlgorithmus - Introducción</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Oswald', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f4f8;
+            background: linear-gradient(135deg, #1a2a44 0%, #ff4500 50%, #1a2a44 100%);
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
-            transition: background-color 0.3s ease;
+            position: relative;
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, #ffd700 2px, transparent 2px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: -1;
+            display: none;
+        }
+        @media (min-width: 1200px) {
+            body::before {
+                display: block;
+            }
         }
         header {
-            background: linear-gradient(90deg, #1a2a44 0%, #ff4500 100%);
-            padding: 2em 1em;
+            background: linear-gradient(90deg, #000000 0%, #1a2a44 100%);
+            padding: 2rem 1rem;
             text-align: center;
             color: #fff;
             position: relative;
@@ -27,9 +46,6 @@
         #logo {
             max-width: 350px;
             height: auto;
-            background: none;
-            border: none;
-            box-shadow: none;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
             transition: transform 0.5s ease;
         }
@@ -38,35 +54,23 @@
         }
         nav {
             background-color: #000000;
-            padding: 1em;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav li {
-            margin: 0 1.5em;
-        }
-        nav a {
+        nav .navbar-nav .nav-link {
             color: #ffd700;
-            text-decoration: none;
             font-weight: 700;
             transition: color 0.3s, transform 0.3s;
         }
-        nav a:hover {
+        nav .navbar-nav .nav-link:hover {
             color: #ff4500;
             transform: scale(1.1);
         }
         h1 {
-            font-size: 3em;
-            margin: 0.5em 0;
+            font-size: 3rem;
+            margin: 0.5rem 0;
             color: #ffd700;
             text-transform: uppercase;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -93,9 +97,9 @@
             background: #ffd700;
         }
         section {
-            padding: 3em;
+            padding: 3rem;
             background: linear-gradient(to bottom, #ffffff, #f0f4f8 100%);
-            margin: 1em;
+            margin: 1rem 0;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, opacity 0.5s, box-shadow 0.3s;
@@ -126,15 +130,9 @@
         ul li:hover {
             transform: translateX(10px);
         }
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2em;
-            margin: 2em 0;
-        }
         .contact-card {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 1.5em;
+            padding: 1.5rem;
             border-radius: 10px;
             border-left: 4px solid #ff4500;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -147,19 +145,16 @@
         .contact-card h3 {
             color: #1a2a44;
             margin-top: 0;
-            font-size: 1.5em;
+            font-size: 1.5rem;
             text-align: center;
             border-bottom: 2px solid #ffd700;
-            padding-bottom: 0.5em;
-        }
-        .contact-info {
-            margin: 1em 0;
+            padding-bottom: 0.5rem;
         }
         .contact-info p {
-            margin: 0.5em 0;
+            margin: 0.5rem 0;
             display: flex;
             align-items: center;
-            gap: 0.5em;
+            gap: 0.5rem;
             transition: color 0.3s;
         }
         .contact-info p:hover {
@@ -169,13 +164,13 @@
             color: #ff4500;
             width: 20px;
             text-align: center;
-            font-size: 1.1em;
+            font-size: 1.1rem;
         }
         .social-contact {
-            margin-top: 1em;
+            margin-top: 1rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5em;
+            gap: 0.5rem;
             justify-content: center;
         }
         .social-contact a {
@@ -210,7 +205,7 @@
         .email-btn {
             display: block;
             width: 100%;
-            margin: 1em 0;
+            margin: 1rem 0;
             padding: 10px;
             background: linear-gradient(45deg, #1a2a44 0%, #ff4500 100%);
             color: #ffd700;
@@ -231,10 +226,10 @@
         footer {
             background: linear-gradient(90deg, #000000 0%, #1a2a44 100%);
             text-align: center;
-            padding: 1.5em;
+            padding: 1.5rem;
             color: #ffd700;
             width: 100%;
-            margin-top: 2em;
+            margin-top: 2rem;
         }
         .social-logo {
             width: 24px;
@@ -245,42 +240,16 @@
         .social-logo.email {
             fill: #ffd700;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            transition: opacity 0.3s ease;
-        }
-        .modal.show {
-            opacity: 1;
-        }
         .modal-content {
             background-color: #fff;
-            margin: 15% auto;
             padding: 20px;
             border: 2px solid #1a2a44;
-            width: 80%;
-            max-width: 400px;
             color: #333;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transform: translateY(-50px);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        .modal-content.show {
-            transform: translateY(0);
-            opacity: 1;
         }
         .close {
             color: #ff4500;
-            float: right;
             font-size: 28px;
             font-weight: bold;
             transition: color 0.3s, transform 0.3s;
@@ -288,37 +257,10 @@
         .close:hover,
         .close:focus {
             color: #000000;
-            text-decoration: none;
             cursor: pointer;
             transform: rotate(90deg);
         }
-        form input, form button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #1a2a44;
-            font-family: 'Oswald', sans-serif;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        form input:focus {
-            border-color: #ff4500;
-            box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
-        }
-        form button {
-            background-color: #ff4500;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        form button:hover {
-            background-color: #ffd700;
-            transform: scale(1.05);
-        }
         iframe {
-            display: block;
-            margin: 1em auto;
             border: 3px solid #1a2a44;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -327,30 +269,62 @@
         iframe:hover {
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
-        @media (max-width: 600px) {
-            nav ul {
-                flex-direction: column;
-                text-align: center;
+        /* Líneas decorativas laterales */
+        .sidebar-decoration {
+            position: fixed;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: #ffd700;
+            z-index: 999;
+            animation: pulseLine 3s infinite;
+            display: none;
+        }
+        .sidebar-decoration.left {
+            left: 0;
+        }
+        .sidebar-decoration.right {
+            right: 0;
+        }
+        @media (min-width: 1200px) {
+            .sidebar-decoration {
+                display: block;
             }
-            nav li {
-                margin: 0.5em 0;
+        }
+        /* Barra lateral fija */
+        .sidebar {
+            position: fixed;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            border-radius: 10px;
+            display: none;
+            z-index: 1000;
+        }
+        .sidebar a {
+            display: block;
+            margin: 0.5rem 0;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .sidebar a:hover {
+            color: #ff4500;
+        }
+        @media (min-width: 1200px) {
+            .sidebar {
+                display: block;
             }
-            iframe {
-                width: 100%;
-                height: auto;
+        }
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
             }
             section {
-                padding: 1.5em;
-            }
-            h1 {
-                font-size: 2em;
-            }
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 1em;
-            }
-            .social-contact {
-                gap: 0.8em;
+                padding: 1.5rem;
             }
             .social-contact a {
                 width: 45px;
@@ -369,59 +343,114 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes iconPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
         @keyframes pulse {
             0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
             50% { text-shadow: 2px 2px 8px rgba(255, 69, 0, 0.5); }
             100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
         }
+        @keyframes pulseLine {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: none;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #1a2a44 0%, #ff4500 100%);
+            color: #ffd700;
+            border: none;
+            border-radius: 50%;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .back-to-top:hover {
+            background: linear-gradient(45deg, #ff4500 0%, #1a2a44 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .back-to-top.visible {
+            display: block;
+        }
+        /* SENA Logo */
+        #sena-logo {
+            max-width: 100px;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            animation: rotate 10s linear infinite;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
-    <header id="inicio">
-        <img id="logo" src="https://github.com/MrQuake29/sportalgorithmus-website/blob/main/sportalgorithmus_logo.png.png?raw=true" alt="SportAlgorithmus Logo">
-        <h1>SportAlgorithmus</h1>
-        <p>Software desarrollado por: Nicolás David Palacios Linares & Joshua Daniel Higuera Forero</p>
+    <!-- Líneas decorativas laterales -->
+    <div class="sidebar-decoration left"></div>
+    <div class="sidebar-decoration right"></div>
+
+    <header id="inicio" class="py-4">
+        <div class="container-fluid">
+            <img id="logo" src="https://github.com/MrQuake29/sportalgorithmus-website/blob/main/sportalgorithmus_logo.png.png?raw=true" alt="SportAlgorithmus Logo" class="img-fluid">
+            <h1>SportAlgorithmus</h1>
+            <p>Software desarrollado por: Nicolás David Palacios Linares & Joshua Daniel Higuera Forero</p>
+        </div>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#introduccion">Introducción</a></li>
-            <li><a href="#mision">Misión</a></li>
-            <li><a href="#vision">Visión</a></li>
-            <li><a href="#valores">Valores</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#video">Video Demostrativo</a></li>
-            <li><a href="#colores">Simbolismo de Colores</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#" id="login-link">Iniciar Sesión</a></li>
-            <li><a href="#" id="register-link">Registro</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#introduccion">Introducción</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mision">Misión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vision">Visión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#valores">Valores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#video">Video Demostrativo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#colores">Simbolismo de Colores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login-modal">Iniciar Sesión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#register-modal">Registro</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <section id="introduccion">
+    <section id="introduccion" class="container my-4">
         <h2>Introducción</h2>
-        <p>En el mundo digital, la eficiencia es clave. En Sport Algorithmus, creamos software avanzado que aprovecha el poder de los algoritmos para analizar datos y ofrecer insights críticos. Nuestras soluciones están diseñadas para cualquier entidad que aspire a maximizar su rendimiento y alcanzar sus objetivos. Te invitamos a explorar cómo nuestra tecnología puede revolucionar tu enfoque.</p>
+        <p>En el mundo digital, la eficiencia es clave. En SportAlgorithmus, creamos software avanzado que aprovecha el poder de los algoritmos para analizar datos y ofrecer insights críticos. Nuestras soluciones están diseñadas para cualquier entidad que aspire a maximizar su rendimiento y alcanzar sus objetivos. Te invitamos a explorar cómo nuestra tecnología puede revolucionar tu enfoque.</p>
     </section>
 
-    <section id="mision">
+    <section id="mision" class="container my-4">
         <h2>Misión</h2>
         <p>Desarrollar software dedicado al crecimiento de implementación de servicios de software apoyándonos permanentemente en la evolución de los nuevos lenguajes y códigos de ultima tecnología.</p>
         <p>Impulsar a la industria permanentemente la creación y la actualización a su software que se encuentran sus procesos productivos para que la compañía permanezca a la vanguardia del desarrollo.</p>
     </section>
 
-    <section id="vision">
+    <section id="vision" class="container my-4">
         <h2>Visión</h2>
         <p>La empresa busca liderar en soluciones de software innovadoras, destacándose por su excelencia técnica y compromiso con el cliente.</p>
         <p>Fomenta un entorno colaborativo para el desarrollo personal y contribuye a mejorar la calidad de vida mediante tecnologías que beneficien a la sociedad incursionando en los mercados con crecimientos proyectados hasta el año 2030.</p>
     </section>
 
-    <section id="valores">
+    <section id="valores" class="container my-4">
         <h2>Valores</h2>
         <ul>
             <li><strong>Innovación:</strong> Impulso constante hacia la creación de soluciones novedosas. Fomento de la experimentación y la adopción de nuevas tecnologías.</li>
@@ -435,7 +464,7 @@
         </ul>
     </section>
 
-    <section id="servicios">
+    <section id="servicios" class="container my-4">
         <h2>Servicios</h2>
         <ul>
             <li><strong>Desarrollo de Software a Medida:</strong> Creación de soluciones personalizadas que se ajustan a los requerimientos específicos de cada cliente. Desarrollo de aplicaciones web, móviles y de escritorio.</li>
@@ -452,14 +481,16 @@
         </ul>
     </section>
 
-    <section id="video">
+    <section id="video" class="container my-4">
         <h2>Video Demostrativo</h2>
         <p>Un ejemplo de cómo la tecnología y los algoritmos transforman la toma de decisiones en el fútbol, destacando el uso de datos e inteligencia artificial.</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/QrLfMGhRm3Q" title="Sport Algorithmus - Tecnología en el Deporte" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p>Créditos: Video proporcionado por Sport Algorithmus.</p>
+        <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/QrLfMGhRm3Q" title="SportAlgorithmus - Tecnología en el Deporte" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p>Créditos: Video proporcionado por SportAlgorithmus.</p>
     </section>
 
-    <section id="colores">
+    <section id="colores" class="container my-4">
         <h2>Simbolismo de Colores</h2>
         <ul>
             <li><strong>Azul:</strong> Representa la confianza, estabilidad y precisión de nuestros algoritmos y soluciones.</li>
@@ -469,158 +500,162 @@
         </ul>
     </section>
 
-    <section id="contacto">
+    <section id="contacto" class="container my-4">
         <h2>Contacto</h2>
-        <div class="contact-container">
+        <div class="row g-4">
             <!-- Contacto Joshua -->
-            <div class="contact-card">
-                <h3>Joshua Daniel Higuera Forero</h3>
-                <div class="contact-info">
-                    <p><i class="fas fa-map-marker-alt"></i><strong>Dirección:</strong> Cl. 59 Sur #65, Tunjuelito, Bogotá</p>
-                    <p><i class="fas fa-envelope"></i><strong>Correo:</strong> <a href="mailto:jhiguera@rogeliosalmonaied.edu.co">jhiguera@rogeliosalmonaied.edu.co</a></p>
-                    <p><i class="fas fa-phone"></i><strong>CEL:</strong> <a href="https://wa.me/573138952814">3138952814</a></p>
+            <div class="col-md-6">
+                <div class="contact-card h-100">
+                    <h3>Joshua Daniel Higuera Forero</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i><strong>Dirección:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Cl.+59+Sur+%2365,+Tunjuelito,+Bogotá" target="_blank" rel="noopener noreferrer">Cl. 59 Sur #65, Tunjuelito, Bogotá</a></p>
+                        <p><i class="fas fa-envelope"></i><strong>Correo:</strong> <a href="mailto:jhiguera@rogeliosalmonaied.edu.co">jhiguera@rogeliosalmonaied.edu.co</a></p>
+                        <p><i class="fas fa-phone"></i><strong>CEL:</strong> <a href="https://wa.me/573138952814">3138952814</a></p>
+                    </div>
+                    <div class="social-contact">
+                        <a href="https://www.instagram.com/j.higuera777" target="_blank" rel="noopener noreferrer" class="instagram" title="Instagram Joshua" aria-label="Instagram de Joshua">
+                            <svg class="social-logo" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/573138952814" target="_blank" rel="noopener noreferrer" class="whatsapp" title="WhatsApp Joshua" aria-label="WhatsApp de Joshua">
+                            <svg class="social-logo" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:jhiguera@rogeliosalmonaied.edu.co?subject=Consulta%20SportAlgorithmus" class="email" title="Email Joshua" aria-label="Email de Joshua">
+                            <svg class="social-logo email" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <a href="mailto:jhiguera@rogeliosalmonaied.edu.co?subject=Consulta%20SportAlgorithmus" class="email-btn">Contactar por Email</a>
                 </div>
-                <div class="social-contact">
-                    <a href="https://www.instagram.com/j.higuera777" target="_blank" rel="noopener noreferrer" class="instagram" title="Instagram Joshua" aria-label="Instagram de Joshua">
-                        <svg class="social-logo" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <a href="https://wa.me/573138952814" target="_blank" rel="noopener noreferrer" class="whatsapp" title="WhatsApp Joshua" aria-label="WhatsApp de Joshua">
-                        <svg class="social-logo" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:jhiguera@rogeliosalmonaied.edu.co?subject=Consulta%20SportAlgorithmus" class="email" title="Email Joshua" aria-label="Email de Joshua">
-                        <svg class="social-logo email" viewBox="0 0 24 24">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                    </a>
-                </div>
-                <a href="mailto:jhiguera@rogeliosalmonaied.edu.co?subject=Consulta%20SportAlgorithmus" class="email-btn">Contactar por Email</a>
             </div>
-
             <!-- Contacto Nicolás -->
-            <div class="contact-card">
-                <h3>Nicolás David Palacios Linares</h3>
-                <div class="contact-info">
-                    <p><i class="fas fa-map-marker-alt"></i><strong>Dirección:</strong> Cl. 59 Sur #65, Tunjuelito, Bogotá</p>
-                    <p><i class="fas fa-envelope"></i><strong>Correo:</strong> <a href="mailto:palacios.linares.nico@gmail.com">palacios.linares.nico@gmail.com</a></p>
-                    <p><i class="fas fa-phone"></i><strong>CEL:</strong> <a href="https://wa.me/573214322155">3214322155</a></p>
+            <div class="col-md-6">
+                <div class="contact-card h-100">
+                    <h3>Nicolás David Palacios Linares</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i><strong>Dirección:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Cl.+59+Sur+%2365,+Tunjuelito,+Bogotá" target="_blank" rel="noopener noreferrer">Cl. 59 Sur #65, Tunjuelito, Bogotá</a></p>
+                        <p><i class="fas fa-envelope"></i><strong>Correo:</strong> <a href="mailto:palacios.linares.nico@gmail.com">palacios.linares.nico@gmail.com</a></p>
+                        <p><i class="fas fa-phone"></i><strong>CEL:</strong> <a href="https://wa.me/573214322155">3214322155</a></p>
+                    </div>
+                    <div class="social-contact">
+                        <a href="https://www.instagram.com/np._xix" target="_blank" rel="noopener noreferrer" class="instagram" title="Instagram Nicolás" aria-label="Instagram de Nicolás">
+                            <svg class="social-logo" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/573214322155" target="_blank" rel="noopener noreferrer" class="whatsapp" title="WhatsApp Nicolás" aria-label="WhatsApp de Nicolás">
+                            <svg class="social-logo" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:palacios.linares.nico@gmail.com?subject=Consulta%20SportAlgorithmus" class="email" title="Email Nicolás" aria-label="Email de Nicolás">
+                            <svg class="social-logo email" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <a href="mailto:palacios.linares.nico@gmail.com?subject=Consulta%20SportAlgorithmus" class="email-btn">Contactar por Email</a>
                 </div>
-                <div class="social-contact">
-                    <a href="https://www.instagram.com/np._xix" target="_blank" rel="noopener noreferrer" class="instagram" title="Instagram Nicolás" aria-label="Instagram de Nicolás">
-                        <svg class="social-logo" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <a href="https://wa.me/573214322155" target="_blank" rel="noopener noreferrer" class="whatsapp" title="WhatsApp Nicolás" aria-label="WhatsApp de Nicolás">
-                        <svg class="social-logo" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:palacios.linares.nico@gmail.com?subject=Consulta%20SportAlgorithmus" class="email" title="Email Nicolás" aria-label="Email de Nicolás">
-                        <svg class="social-logo email" viewBox="0 0 24 24">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                    </a>
-                </div>
-                <a href="mailto:palacios.linares.nico@gmail.com?subject=Consulta%20SportAlgorithmus" class="email-btn">Contactar por Email</a>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 2em;">
-            <a href="mailto:jhiguera@rogeliosalmonaied.edu.co,palacios.linares.nico@gmail.com,SportAlgorithmus@gmail.com?subject=Consulta%20SportAlgorithmus" class="email-btn" style="display: inline-block; width: auto; padding: 12px 24px;">📧 Contacto General SportAlgorithmus</a>
+        <div class="text-center mt-4">
+            <a href="mailto:jhiguera@rogeliosalmonaied.edu.co,palacios.linares.nico@gmail.com,SportAlgorithmus@gmail.com?subject=Consulta%20SportAlgorithmus" class="email-btn">📧 Contacto General SportAlgorithmus</a>
         </div>
     </section>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Volver al Inicio" aria-label="Volver al Inicio">↑</button>
+
     <!-- Login Modal -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="close-login">&times;</span>
-            <h2>Iniciar Sesión</h2>
-            <form id="login-form">
-                <input type="email" placeholder="Correo Electrónico" required>
-                <input type="password" placeholder="Contraseña" required>
-                <button type="submit">Iniciar Sesión</button>
-            </form>
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="login-form">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Contraseña" required>
+                        </div>
+                        <button type="submit" class="btn email-btn w-100">Iniciar Sesión</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Register Modal -->
-    <div id="register-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="close-register">&times;</span>
-            <h2>Registro</h2>
-            <form id="register-form">
-                <input type="text" id="name-input" placeholder="Nombre" required>
-                <input type="email" placeholder="Correo Electrónico" required>
-                <input type="password" placeholder="Contraseña" required>
-                <button type="submit">Registrarse</button>
-            </form>
+    <div class="modal fade" id="register-modal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Registro</h5>
+                    <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="register-form">
+                        <div class="mb-3">
+                            <input type="text" id="name-input" class="form-control" placeholder="Nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Contraseña" required>
+                        </div>
+                        <button type="submit" class="btn email-btn w-100">Registrarse</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>© 2025-2025 SportAlgorithmus. Todos los derechos reservados. | <a href="#inicio">Inicio</a> | <a href="#contacto">Contacto</a> | Política de Privacidad</p>
+    <footer class="py-4">
+        <div class="container-fluid text-center">
+            <p>© 2025-2025 SportAlgorithmus. Todos los derechos reservados. | <a href="#inicio">Inicio</a> | <a href="#contacto">Contacto</a> | Política de Privacidad</p>
+            <!-- Google Translate Element -->
+            <div id="google_translate_element"></div>
+            <!-- SENA Logo -->
+            <div>
+                <img id="sena-logo" src="https://github.com/MrQuake29/sportalgorithmus-website/blob/main/sena.png?raw=true" alt="SENA Logo" class="img-fluid">
+            </div>
+        </div>
     </footer>
 
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'ar,bn,zh-CN,zh-TW,hi,ja,ko,ru,th,ur,vi,he,el,fa,pa,ta,fr,de,it,pt,es,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        }
         // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const href = this.getAttribute('href');
+                if (href.startsWith('#') && href !== '#') {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
-
-        // Login Modal
-        const loginModal = document.getElementById('login-modal');
-        const loginLink = document.getElementById('login-link');
-        const closeLogin = document.getElementById('close-login');
-
-        loginLink.onclick = function() {
-            loginModal.style.display = "block";
-            setTimeout(() => loginModal.classList.add('show'), 10);
-            setTimeout(() => loginModal.querySelector('.modal-content').classList.add('show'), 10);
-        }
-        closeLogin.onclick = function() {
-            loginModal.classList.remove('show');
-            loginModal.querySelector('.modal-content').classList.remove('show');
-            setTimeout(() => loginModal.style.display = "none", 300);
-        }
-
-        // Register Modal
-        const registerModal = document.getElementById('register-modal');
-        const registerLink = document.getElementById('register-link');
-        const closeRegister = document.getElementById('close-register');
-
-        registerLink.onclick = function() {
-            registerModal.style.display = "block";
-            setTimeout(() => registerModal.classList.add('show'), 10);
-            setTimeout(() => registerModal.querySelector('.modal-content').classList.add('show'), 10);
-        }
-        closeRegister.onclick = function() {
-            registerModal.classList.remove('show');
-            registerModal.querySelector('.modal-content').classList.remove('show');
-            setTimeout(() => registerModal.style.display = "none", 300);
-        }
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            if (event.target == loginModal) {
-                loginModal.classList.remove('show');
-                loginModal.querySelector('.modal-content').classList.remove('show');
-                setTimeout(() => loginModal.style.display = "none", 300);
-            }
-            if (event.target == registerModal) {
-                registerModal.classList.remove('show');
-                registerModal.querySelector('.modal-content').classList.remove('show');
-                setTimeout(() => registerModal.style.display = "none", 300);
-            }
-        }
 
         // Form submissions with validation
         document.getElementById('login-form').addEventListener('submit', (e) => {
@@ -629,9 +664,7 @@
             const password = document.querySelector('#login-form input[type="password"]').value;
             if (email && password) {
                 alert('Sesión iniciada (demo)');
-                loginModal.classList.remove('show');
-                loginModal.querySelector('.modal-content').classList.remove('show');
-                setTimeout(() => loginModal.style.display = "none", 300);
+                bootstrap.Modal.getInstance(document.getElementById('login-modal')).hide();
             } else {
                 alert('Por favor, completa todos los campos.');
             }
@@ -644,7 +677,6 @@
             const email = document.querySelector('#register-form input[type="email"]').value;
             const password = document.querySelector('#register-form input[type="password"]').value;
 
-            // Validación de nombre: solo letras, espacios y acentos
             const nameRegex = /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/;
             if (!nameRegex.test(name)) {
                 alert('El nombre solo puede contener letras, espacios y acentos. No se permiten números o caracteres especiales.');
@@ -654,9 +686,7 @@
 
             if (name && email && password) {
                 alert('Registro completado (demo)');
-                registerModal.classList.remove('show');
-                registerModal.querySelector('.modal-content').classList.remove('show');
-                setTimeout(() => registerModal.style.display = "none", 300);
+                bootstrap.Modal.getInstance(document.getElementById('register-modal')).hide();
             } else {
                 alert('Por favor, completa todos los campos.');
             }
@@ -680,6 +710,23 @@
 
         sections.forEach(section => {
             sectionObserver.observe(section);
+        });
+
+        // Back to Top Button Functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
