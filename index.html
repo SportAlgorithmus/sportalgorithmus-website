@@ -395,6 +395,14 @@
             animation: rotate 10s linear infinite;
             margin-top: 1rem;
         }
+        /* Nequi Logo */
+        #nequi-logo {
+            max-width: 100px;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            margin-top: 1rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -426,6 +434,7 @@
                     <li class="nav-item"><a class="nav-link" href="#video">Video Demostrativo</a></li>
                     <li class="nav-item"><a class="nav-link" href="#colores">Simbolismo de Colores</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#canales-pago">Canales de Pago</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login-modal">Iniciar Sesión</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#register-modal">Registro</a></li>
                 </ul>
@@ -566,6 +575,35 @@
             <a href="mailto:jhiguera@rogeliosalmonaied.edu.co,palacios.linares.nico@gmail.com,SportAlgorithmus@gmail.com?subject=Consulta%20SportAlgorithmus" class="email-btn">📧 Contacto General SportAlgorithmus</a>
         </div>
     </section>
+
+    <section id="canales-pago" class="container my-4">
+        <h2>Canales de Pago</h2>
+        <p>Realiza tus pagos de manera rápida y segura a través de Nequi, nuestra plataforma de pago preferida.</p>
+        <div class="text-center">
+            <img id="nequi-logo" src="https://github.com/SportAlgorithmus/sportalgorithmus-website/blob/main/nnq.png?raw=true" alt="Nequi Logo" class="img-fluid" data-bs-toggle="modal" data-bs-target="#nequi-payment-modal">
+        </div>
+    </section>
+
+    <!-- Nequi Payment Modal -->
+    <div class="modal fade" id="nequi-payment-modal" tabindex="-1" aria-labelledby="nequiPaymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="nequiPaymentModalLabel">Información de Pago Nequi</h5>
+                    <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Para realizar el pago a través de Nequi, utiliza el siguiente número:</p>
+                    <p><strong>Número Nequi:</strong> 3214322155</p>
+                    <p>Por favor, asegúrate de incluir el concepto del pago y tu información de contacto para procesar tu solicitud correctamente.</p>
+                    <p>Si necesitas asistencia adicional, contáctanos a través de <a href="mailto:SportAlgorithmus@gmail.com?subject=Consulta%20Pago%20SportAlgorithmus">SportAlgorithmus@gmail.com</a>.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn email-btn" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Back to Top Button -->
     <button class="back-to-top" title="Volver al Inicio" aria-label="Volver al Inicio">↑</button>
